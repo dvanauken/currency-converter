@@ -31,12 +31,11 @@ export class CurrencyFormatterDirective implements AfterViewInit, DoCheck {
   onInput(value: string): void {
     this.formatValue(value);
   }
-
+  
   private formatValue(value: string): void {
-    const numericValue = parseFloat(value.replace(/[^\d.-]/g, ''));
+    const numericValue = parseFloat(value.replace(/[^\\d.-]/g, ''));
     if (isNaN(numericValue)) {
-      this.control.control?.setErrors({ 'invalidCurrency': true });
-      this.renderer.setProperty(this.el.nativeElement, 'value', '');
+      this.control.control?.setErrors({ 'invalidCurrency': `\"${value}\" is not a valid value` });
     } else {
       this.control.control?.setErrors({ 'invalidCurrency': null });
       this.control.control?.updateValueAndValidity();

@@ -1,5 +1,4 @@
-<input type="text" appCurrencyFormatter [(ngModel)]="value" #formControl="ngModel">
-
+<input type="text" appCurrencyFormatter [(ngModel)]="value" #currencyInput="ngModel">
 
 <br>
 <button (click)="setValue('123556789')">Button A</button>
@@ -12,7 +11,8 @@
 <br>
 <button (click)="setValue('ABC')">Button E</button>
 <br>
-<div *ngIf="isCurrencyInvalid" class="error-message">Invalid currency value</div>
-<div *ngIf="currencyInput.control?.hasError('invalidCurrency')" class="error-message">Invalid currency value</div>
+<div *ngIf="currencyErrorMessage" class="error-message">{{ currencyErrorMessage }}</div>
+
+
 <router-outlet></router-outlet>
 

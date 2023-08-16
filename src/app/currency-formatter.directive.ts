@@ -31,19 +31,23 @@ export class CurrencyFormatterDirective implements AfterViewInit, DoCheck {
   onInput(value: string): void {
     this.formatValue(value);
   }
-  
+
+  //private formatValue(value: string): void {
+  //  const numericValue = parseFloat(value.replace(/[^\d.-]/g, ''));
+  //  const formattedValue = isNaN(numericValue) ? '' : `$${numericValue.toLocaleString()}`;
+  //  this.renderer.setProperty(this.el.nativeElement, 'value', formattedValue);
+  //  this.control.control?.setValue(formattedValue, { emitEvent: false });
+  //}
   private formatValue(value: string): void {
-    const numericValue = parseFloat(value.replace(/[^\\d.-]/g, ''));
+    const numericValue = parseFloat(value.replace(/[^\d.-]/g, ''));
     if (isNaN(numericValue)) {
-      this.control.control?.setErrors({ 'invalidCurrency': `\"${value}\" is not a valid value` });
+      this.control.control?.setErrors({ 'invalidCurrency': true });
+      this.renderer.setProperty(this.el.nativeElement, 'value', '');
     } else {
-      this.control.control?.setErrors({ 'invalidCurrency': null });
-      this.control.control?.updateValueAndValidity();
       const formattedValue = `$${numericValue.toLocaleString()}`;
       this.renderer.setProperty(this.el.nativeElement, 'value', formattedValue);
       this.control.control?.setValue(formattedValue, { emitEvent: false });
     }
   }
-  
   
 }

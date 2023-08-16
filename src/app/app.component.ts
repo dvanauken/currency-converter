@@ -17,8 +17,8 @@ export class AppComponent {
     this.value = newValue;
   }
 
-  getCurrencyErrorMessage() {
-    return this.currencyInput?.control?.hasError('invalidCurrency') ? this.currencyInput?.control?.errors['invalidCurrency'] : null;
+  get currencyErrorMessage() {
+    return this.currencyInput?.control?.errors?.['invalidCurrency'];
   }
   
 

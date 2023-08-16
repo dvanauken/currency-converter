@@ -40,6 +40,7 @@ export class CurrencyFormatterDirective implements AfterViewInit, DoCheck {
     console.log('Test2');
     if (isNaN(numericValue)) {
       this.control.control?.setErrors({ 'invalidCurrency': `\"${value}\" is not a valid value` });
+      this.renderer.setProperty(this.el.nativeElement, 'value', this.lastValue);
     } else {
       this.control.control?.setErrors(null);
       const formattedValue = `$${numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`; // Format with two decimal places
@@ -47,4 +48,8 @@ export class CurrencyFormatterDirective implements AfterViewInit, DoCheck {
       this.control.control?.setValue(formattedValue, { emitEvent: false });
     }
   }
+  
+  
+
+
 }

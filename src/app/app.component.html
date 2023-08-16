@@ -1,11 +1,16 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<input type="text" appCurrencyFormatter [(ngModel)]="value" #formControl="ngModel">
 
-<input type="text" appCurrencyFormatter [(ngModel)]="value">
+<br>
+<button (click)="setValue('123556789')">Button A</button>
+<br>
+<button (click)="setValue('987654321.00')">Button B</button>
+<br>
+<button (click)="setValue('1235')">Button C</button>
+<br>
+<button (click)="setValue('$1235.00')">Button D</button>
+<br>
+<button (click)="setValue('ABC')">Button E</button>
+<br>
+<div *ngIf="isCurrencyInvalid" class="error-message">Invalid currency value</div>
+<div *ngIf="currencyInput.control?.hasError('invalidCurrency')" class="error-message">Invalid currency value</div>
 <router-outlet></router-outlet>

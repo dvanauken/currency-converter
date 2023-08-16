@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'currency-formatter';
-  value = '100000';
+  value = '765432';
+  isCurrencyInvalid = false;
+
+  @ViewChild('currencyInput') currencyInput!: NgModel;
+
+  setValue(newValue: string): void {
+    this.value = newValue;
+  }
+
+  //get isCurrencyInvalid(): boolean {
+  //  return this.currencyInput?.control?.hasError('invalidCurrency') ?? false;
+  //}
+
+  onInvalidCurrency(invalid: boolean): void {
+    this.isCurrencyInvalid = invalid;
+  }
+  
 }
